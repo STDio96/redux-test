@@ -1,43 +1,24 @@
-import { createStore } from 'redux';
+import { compose, createStore, applyMiddleware, combineReducers } from 'redux'
+import thunkMiddleware from 'redux-thunk'
 
-const preloadedState = [{
-    id: 1,
-    text: 'do something',
-    completed: false
-}]
+// importing reducer
+import mainReducer from './ducks/mainPage'
+import albumReducer from './ducks/albumPage'
 
-/* const action = {
-    type: 'create_todo',
-    payload: {
-        text: 'new todo',
-        completed: false,
-    }
-} */
+/* const rootReducer = combineReducers({
+    mainReducer,
+    albumReducer
+}); */
 
-const reducer = (state, action) => {
-    switch (action.type) {
-        case 'create_todo':
-            return [...state, {
-                id: (+ new Date()),
-                text: action.payload.text,
-                completed: false
-            }];
-        case 'mark_as_completed':
-            return state.map(item => {
-                if (item.id === action.payload.id) {
-                    return {
-                        ...item,
-                        completed: !item.completed
-                    }
-                }
+const rootReducer = mainReducer;
 
-                return item;
-            });
-        default:
-            return state;
-    }
-}
+const composeEnhancers =
+    typeof window === 'object' &&
+        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
+        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+            // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
+        }) : compose;
 
-const store = createStore(reducer, preloadedState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const store = createStore(rootReducer, undefined, composeEnhancers(applyMiddleware(thunkMiddleware)));
 
 export default store;

@@ -34,12 +34,13 @@ const mapDispatchToProps = dispatch => ({
             text
         }
     }),
-    changeStatus: () => dispatch({
+    changeStatus: (t) => dispatch({
         type: 'mark_as_completed',
         payload: {
             id: 1,
         }
     })
+
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
