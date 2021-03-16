@@ -13,6 +13,10 @@ export default class APIRequests {
             .then((response) => response.json());
     }
 
+    static fetchAlbumInfo = (id) =>
+        fetch(`${this.baseURL}/albums/${id}?_expand=user`)
+            .then((response) => response.json());
+
     static fetchSinglePhoto = (id) =>
         fetch(`${this.baseURL}/photos/${id}?_expand=album`)
             .then((response) => response.json());

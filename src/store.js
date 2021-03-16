@@ -2,15 +2,15 @@ import { compose, createStore, applyMiddleware, combineReducers } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 
 // importing reducer
-import mainReducer from './ducks/mainPage'
-import albumReducer from './ducks/albumPage'
+import mainPage from './ducks/mainPage'
+import albumPage from './ducks/albumPage'
 
-/* const rootReducer = combineReducers({
-    mainReducer,
-    albumReducer
-}); */
+const rootReducer = combineReducers({
+    mainPage,
+    albumPage
+});
 
-const rootReducer = mainReducer;
+// const rootReducer = mainReducer;
 
 const composeEnhancers =
     typeof window === 'object' &&

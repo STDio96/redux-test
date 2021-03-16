@@ -1,10 +1,11 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import Album from './components/Album/Album.jsx';
+import AlbumPage from './components/AlbumPage/AlbumPage.jsx';
 import MainPage from './components/MainPage/MainPage.jsx'
 import SinglePhoto from './components/SinglePhoto/SinglePhoto.jsx';
 import store from './store.js'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import GoBackButton from './components/Buttons/GoBackButton.jsx';
 
 function App() {
   return (
@@ -16,10 +17,12 @@ function App() {
               <MainPage />
             </Route>
             <Route path='/photo/:id'>
+              <GoBackButton />
               <SinglePhoto />
             </Route>
             <Route path='/album/:id'>
-              <Album />
+              <GoBackButton />
+              <AlbumPage />
             </Route>
           </Switch>
         </BrowserRouter>

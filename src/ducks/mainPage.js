@@ -22,7 +22,7 @@ const unmounted = () => ({
 
 export const loadPhotos = () => (dispatch, getState) => {
   dispatch(photosRequested());
-  let pageToLoad = getState().pageToLoad;
+  let pageToLoad = getState().mainPage.pageToLoad;
 
   // TODO: dispatch (or do something else) even if request fails
   APIRequests.fetchPhotos(pageToLoad)
@@ -43,7 +43,6 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
-  // console.log('action', action)
   switch (action.type) {
     case REQUEST_SENT:
       return {
