@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { loadPhotos, loadAlbumInfo, unmountAlbumPage } from '../../ducks/albumPage';
 import { useParams } from 'react-router';
 import { useDispatch, useSelector } from "react-redux";
@@ -24,16 +24,26 @@ const AlbumPage = () => {
         };
     }, []);
 
+    const clickHandler = useMemo(() => () => {
+        dispatch(loadPhotos(id));
+    });
+
     return <div>
         {isAlbumInfoLoaded
             ? <AlbumInfoBlock albumInfo={albumInfo} />
             : <Loader />
         }
         <div className="row row-cols-md-3">
-            {photos.length ? photos.map(photo => {
+            {photos.length > 0 && <React.Fragment>
+                {photos.map(photo => {
+                    return <PhotoCard key={photo.id} photo={photo} />
+                })}
+                <LoadMoreButton isLoaded={isLoaded} clickHandler={clickHandler} />
+            </React.Fragment>}
+            {/* {photos.length ? photos.map(photo => {
                 return <PhotoCard key={photo.id} photo={photo} />
             }) : ''}
-            {photos.length ? <LoadMoreButton isLoaded={isLoaded} clickHandler={() => { dispatch(loadPhotos(id)); }} /> : ''}
+            {photos.length ? <LoadMoreButton isLoaded={isLoaded} clickHandler={() => { dispatch(loadPhotos(id)); }} /> : ''} */}
         </div>
     </div>
 }
