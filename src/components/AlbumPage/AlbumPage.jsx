@@ -26,7 +26,7 @@ const AlbumPage = () => {
 
     const clickHandler = useMemo(() => () => {
         dispatch(loadPhotos(id));
-    });
+    }, []);
 
     return <div>
         {isAlbumInfoLoaded
