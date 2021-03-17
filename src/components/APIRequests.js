@@ -15,13 +15,15 @@ export default class APIRequests {
 
     static fetchAlbumInfo = (id) =>
         fetch(`${this.baseURL}/albums/${id}?_expand=user`)
-            .then((response) => response.json());
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(response.status)
+                } else {
+                    return response.json();
+                }
+            });
 
     static fetchSinglePhoto = (id) =>
         fetch(`${this.baseURL}/photos/${id}?_expand=album`)
-            .then((response) => response.json());
-
-    static fetchUser = (albumId) =>
-        fetch(`${this.baseURL}/albums/${albumId}?_expand=user`)
             .then((response) => response.json());
 }

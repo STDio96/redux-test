@@ -4,10 +4,12 @@ import thunkMiddleware from 'redux-thunk'
 // importing reducer
 import mainPage from './ducks/mainPage'
 import albumPage from './ducks/albumPage'
+import photoPage from './ducks/singlePhotoPage'
 
 const rootReducer = combineReducers({
     mainPage,
-    albumPage
+    albumPage,
+    photoPage,
 });
 
 // const rootReducer = mainReducer;

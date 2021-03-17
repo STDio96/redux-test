@@ -43,10 +43,15 @@ export const loadPhotos = (albumId) => (dispatch, getState) => {
 }
 
 export const loadAlbumInfo = (albumId) => (dispatch) => {
-  dispatch(albumInfoRequested()); // TODO: create
+  dispatch(albumInfoRequested());
 
   APIRequests.fetchAlbumInfo(albumId)
-    .catch((err) => console.error('error', err))
+    .catch((err) => {
+      console.warn(err);
+      if (err === '404') {
+        dispatch(albumInfoReceived({}));
+      }
+    })
     .then((response) => {
       dispatch(albumInfoReceived(response));
     });

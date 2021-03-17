@@ -30,10 +30,10 @@ const AlbumPage = () => {
             : <Loader />
         }
         <div className="row row-cols-md-3">
-            {photos.map(photo => {
+            {photos.length ? photos.map(photo => {
                 return <PhotoCard key={photo.id} photo={photo} />
-            })}
-            <LoadMoreButton isLoaded={isLoaded} clickHandler={() => { dispatch(loadPhotos(id)); }} />
+            }) : ''}
+            {photos.length ? <LoadMoreButton isLoaded={isLoaded} clickHandler={() => { dispatch(loadPhotos(id)); }} /> : ''}
         </div>
     </div>
 }

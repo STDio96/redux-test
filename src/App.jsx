@@ -24,6 +24,9 @@ function App() {
               <GoBackButton />
               <AlbumPage />
             </Route>
+            <Route path='/'>
+              Nothing found :(
+            </Route>
           </Switch>
         </BrowserRouter>
       </div>
