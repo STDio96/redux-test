@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 const LoadMoreButton = ({ isLoaded, clickHandler }) => {
@@ -7,6 +8,11 @@ const LoadMoreButton = ({ isLoaded, clickHandler }) => {
             'Load more...'
         }
     </button>
+}
+
+LoadMoreButton.propTypes = {
+    isLoaded: PropTypes.bool.isRequired,
+    clickHandler: PropTypes.func.isRequired
 }
 
 export default LoadMoreButton;

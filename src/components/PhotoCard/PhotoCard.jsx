@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 const PhotoCard = ({ photo }) => {
     const currentPage = useLocation();
@@ -23,6 +24,10 @@ const PhotoCard = ({ photo }) => {
             </div>
         </div>
     </div>
+}
+
+PhotoCard.propTypes = {
+    photo: PropTypes.object.isRequired
 }
 
 export default PhotoCard;

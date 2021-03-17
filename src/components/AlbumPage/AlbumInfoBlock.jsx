@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 const AlbumInfoBlock = ({ albumInfo }) => {
@@ -23,6 +24,10 @@ const AlbumInfoBlock = ({ albumInfo }) => {
             Album info not found
       </div>
     }
+}
+
+AlbumInfoBlock.propTypes = {
+    albumInfo: PropTypes.object.isRequired,
 }
 
 export default AlbumInfoBlock;

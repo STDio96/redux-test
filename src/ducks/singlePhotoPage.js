@@ -19,7 +19,7 @@ const unmounted = () => ({
 
 export const loadPhoto = (id) => (dispatch) => {
   dispatch(photoRequested());
-console.log(111)
+
   // TODO: dispatch (or do something else) even if request fails
   APIRequests.fetchSinglePhoto(id)
     .catch((err) => console.error('error', err))
